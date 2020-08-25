@@ -1,0 +1,11 @@
+<!-- <page-header></page-header> -->
+<page-header [breadcrumb]="breadcrumb">
+  <ng-template #breadcrumb>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/']">主菜单</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>首页</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </ng-template>
+</page-header>

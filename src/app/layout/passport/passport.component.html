@@ -1,0 +1,17 @@
+<div class="container">
+  <header-i18n showLangText="false" class="langs"></header-i18n>
+  <div class="wrap">
+    <div class="top">
+      <div class="head">
+        <img class="logo" src="./assets/logo-color.png">
+        <span class="title">利华大学学籍管理信息系统</span>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+    <global-footer [links]="links">
+      Copyright
+      <i class="anticon anticon-copyright"></i> 2020
+      <a href="//github.com/cipchk" target="_blank">利华大学</a>信息办
+    </global-footer>
+  </div>
+</div>
