@@ -73,7 +73,7 @@ export class ListComponent implements OnInit {
     },
     {
       id: '20200010101003',
-      department: '计算机系1',
+      department: '计算机系',
       class: '20RJGC',
       major: '软件工程',
       name: '张楠',
