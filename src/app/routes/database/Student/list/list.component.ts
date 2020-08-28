@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-interface Teacher {
+interface Student {
   id: string;
+  department: string;
+  class: string;
+  major: string;
   name: string;
   gender: number;
   birthday: Date;
   education: number;
   phone: number;
-  title: string;
-  post: string;
-  department: string;
   password: number;
-  pid?: string;
+  pid: string;
 }
 
 @Component({
@@ -28,60 +28,60 @@ export class ListComponent implements OnInit {
   isEdit = false;
   drawerTitle = '';
 
-  Teacher: Teacher = {
-    department: undefined,
-    education: undefined,
-    gender: undefined,
+  Student: Student = {
     id: undefined,
-    birthday: undefined,
+    department: undefined,
+    class: undefined,
+    major: undefined,
     name: undefined,
-    password: undefined,
+    gender: undefined,
+    birthday: undefined,
+    education: undefined,
     phone: undefined,
+    password: undefined,
     pid: undefined,
-    post: undefined,
-    title: undefined,
   };
 
   constructor(private http: HttpClient, private msg: NzMessageService) {}
 
-  listOfData: Teacher[] = [
+  listOfData: Student[] = [
     {
-      id: '20200001001',
-      name: '王淑芳',
-      gender: 2,
+      id: '20200010101001',
+      department: '计算机系',
+      class: '20JSJ',
+      major: '计算机科学与技术',
+      name: '徐浩',
+      gender: 1,
       birthday: new Date(),
       education: 2,
       phone: 13761588784,
       pid: '000000000000000000',
-      title: '高级',
-      post: '院（系）教务人员',
-      department: '理学院',
       password: 123456,
     },
     {
-      id: '20200001002',
-      name: '李帅',
-      gender: 1,
-      birthday: new Date(),
-      education: 3,
-      phone: 13774888784,
-      pid: '111111111111111111',
-      title: '副高级',
-      post: '教师',
+      id: '20200010101002',
       department: '文学院',
-      password: 123456,
-    },
-    {
-      id: '20200001003',
-      name: '王男',
+      class: '20wx',
+      major: '文学',
+      name: '张清',
       gender: 2,
       birthday: new Date(),
-      education: 1,
-      phone: 13760088784,
-      pid: '222222222222222222',
-      title: '中级',
-      post: '教师',
-      department: '马克思学院',
+      education: 2,
+      phone: 13761588700,
+      pid: '000000000000000000',
+      password: 123456,
+    },
+    {
+      id: '20200010101003',
+      department: '计算机系1',
+      class: '20RJGC',
+      major: '软件工程',
+      name: '张楠',
+      gender: 1,
+      birthday: new Date(),
+      education: 2,
+      phone: 10001588700,
+      pid: '000000000000000000',
       password: 123456,
     },
   ];
@@ -110,19 +110,19 @@ export class ListComponent implements OnInit {
   add(e: MouseEvent): void {
     e.preventDefault();
     this.isEdit = false;
-    this.drawerTitle = '添加教师';
-    this.Teacher = {
-      department: undefined,
-      education: undefined,
-      gender: undefined,
+    this.drawerTitle = '添加学生';
+    this.Student = {
       id: undefined,
-      birthday: undefined,
+      department: undefined,
+      class: undefined,
+      major: undefined,
       name: undefined,
-      password: undefined,
+      gender: undefined,
+      birthday: undefined,
+      education: undefined,
       phone: undefined,
+      password: undefined,
       pid: undefined,
-      post: undefined,
-      title: undefined,
     };
 
     this.visible = true;
@@ -134,8 +134,8 @@ export class ListComponent implements OnInit {
 
   modify(data) {
     this.isEdit = true;
-    this.drawerTitle = '修改教师';
-    this.Teacher = { ...data };
+    this.drawerTitle = '修改学生';
+    this.Student = { ...data };
     this.visible = true;
   }
 

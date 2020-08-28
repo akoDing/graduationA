@@ -5,22 +5,22 @@
         <a [routerLink]="['/']">首页</a>
       </nz-breadcrumb-item>
       <nz-breadcrumb-item>系统管理</nz-breadcrumb-item>
-      <nz-breadcrumb-item>教师管理</nz-breadcrumb-item>
+      <nz-breadcrumb-item>学生管理</nz-breadcrumb-item>
     </nz-breadcrumb>
   </ng-template>
 </page-header>
 
 <div nz-row>
   <div nz-col [nzSpan]="24">
-    <nz-card nzTitle="教师表单" [nzBordered]="false">
+    <nz-card nzTitle="学生表单" [nzBordered]="false">
       <!-- form list -->
       <form nz-form [nzLayout]="'inline'" (ngSubmit)="select()">
         <div nz-row style="width: 100%;">
           <div nz-col [nzSpan]="5">
             <nz-form-item>
-              <nz-form-label nzFor="teacherId">工号</nz-form-label>
+              <nz-form-label nzFor="stuId">学号</nz-form-label>
               <nz-form-control>
-                <input nz-input name="teacherId" placeholder="请输入工号" id="teacherId" />
+                <input nz-input name="stuId" placeholder="请输入学号" id="stuId" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -29,6 +29,22 @@
               <nz-form-label nzFor="name">姓名</nz-form-label>
               <nz-form-control>
                 <input nz-input name="name" placeholder="请输入姓名" id="name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="5">
+            <nz-form-item>
+              <nz-form-label nzFor="major">专业</nz-form-label>
+              <nz-form-control>
+                <input nz-input name="major" placeholder="请输入专业" id="major" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="5">
+            <nz-form-item>
+              <nz-form-label nzFor="class">班级</nz-form-label>
+              <nz-form-control>
+                <input nz-input name="class" placeholder="请输入班级" id="class" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -49,7 +65,7 @@
         </div>
         <div nz-row>
           <div nz-col nzSpan="16">
-            <button nz-button [nzType]="'primary'" (click)="add($event); teacherForm.reset()">
+            <button nz-button [nzType]="'primary'" (click)="add($event); studentForm.reset()">
               <i nz-icon nzType="plus"></i>
               <span>添加</span>
             </button>
@@ -63,15 +79,15 @@
         <thead>
           <tr>
             <th>序号</th>
-            <th>工号</th>
+            <th>学号</th>
             <th>姓名</th>
             <th>性别</th>
             <th>出生日期</th>
-            <th>最高学历</th>
+            <th>学历</th>
             <th>电话</th>
-            <th>职称</th>
-            <th>职务</th>
+            <th>所属班级</th>
             <th>所属院系</th>
+            <th>所属专业</th>
             <th>密码</th>
             <th>操作</th>
           </tr>
@@ -86,14 +102,12 @@
             </td>
             <td>{{ data.birthday | date:'yyyy-MM-dd' }}</td>
             <td>
-              {{ data.education === 1?'研究生':data.education === 2?'博士':data.education === 3?'博士后':data.education === 4?'博士后':'' }}
+              {{ data.education === 1?'专科':data.education === 2?'本科':data.education === 3?'研究生':data.education === 4?'研究生以上':'' }}
             </td>
             <td>{{ data.phone }}</td>
-            <td>{{ data.title }}</td>
-            <td>
-              <nz-tag *ngIf="data.post" [nzColor]="'gold'">{{ data.post }}</nz-tag>
-            </td>
+            <td>{{ data.class }}</td>
             <td>{{ data.department }}</td>
+            <td>{{ data.major }}</td>
             <td>{{ data.password }}</td>
             <td>
               <a (click)="modify(data)">修改</a>
@@ -113,24 +127,24 @@
 </div>
 
 <nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' }" [nzWidth]="720"
-  [nzVisible]="visible" [nzTitle]="drawerTitle" (nzOnClose)="close(); teacherForm.reset()">
-  <form nz-form #teacherForm="ngForm" (ngSubmit)="createUser(teacherForm.value,teacherForm.valid,teacherForm)">
+  [nzVisible]="visible" [nzTitle]="drawerTitle" (nzOnClose)="close(); studentForm.reset()">
+  <form nz-form #studentForm="ngForm" (ngSubmit)="createUser(studentForm.value,studentForm.valid,studentForm)">
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzRequired>工号</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="教师工号必填">
-        <input nz-input [(ngModel)]="Teacher.id" placeholder="请输入工号" name="id" required />
+      <nz-form-label [nzSpan]="5" nzRequired>学号</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生学号必填">
+        <input nz-input [(ngModel)]="Student.id" placeholder="请输入学号" name="id" required />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzRequired>姓名</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="教师姓名必填">
-        <input nz-input [(ngModel)]="Teacher.name" placeholder="请输入姓名" name="name" required />
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生姓名必填">
+        <input nz-input [(ngModel)]="Student.name" placeholder="请输入姓名" name="name" required />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzRequired>性别</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="教师性别必填">
-        <nz-select [(ngModel)]="Teacher.gender" nzPlaceHolder="请选择性别" name="gender" required>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生性别必填">
+        <nz-select [(ngModel)]="Student.gender" nzPlaceHolder="请选择性别" name="gender" required>
           <nz-option [nzValue]="1" nzLabel="男"></nz-option>
           <nz-option [nzValue]="2" nzLabel="女"></nz-option>
         </nz-select>
@@ -139,67 +153,67 @@
     <nz-form-item>
       <nz-form-label [nzSpan]="5">出生日期</nz-form-label>
       <nz-form-control nzHasFeedback [nzSpan]="24">
-        <nz-date-picker [(ngModel)]="Teacher.birthday" name="birthday"></nz-date-picker>
+        <nz-date-picker [(ngModel)]="Student.birthday" name="birthday"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzRequired>身份证号</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="教师身份证号错误">
-        <input nz-input [(ngModel)]="Teacher.pid" placeholder="请输入身份证号" name="pid" minlength="18" maxlength="18"
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生身份证号错误">
+        <input nz-input [(ngModel)]="Student.pid" placeholder="请输入身份证号" name="pid" minlength="18" maxlength="18"
           pattern="^[0-9]*$" required />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5">最高学历</nz-form-label>
+      <nz-form-label [nzSpan]="5">学历</nz-form-label>
       <nz-form-control nzHasFeedback [nzSpan]="24">
-        <nz-select [(ngModel)]="Teacher.education" nzPlaceHolder="请选择最高学历" name="education">
-          <nz-option [nzValue]="1" nzLabel="研究生"></nz-option>
-          <nz-option [nzValue]="2" nzLabel="博士"></nz-option>
-          <nz-option [nzValue]="3" nzLabel="博士后"></nz-option>
-          <nz-option [nzValue]="4" nzLabel="博士后以上"></nz-option>
+        <nz-select [(ngModel)]="Student.education" nzPlaceHolder="请选择学历" name="education">
+          <nz-option [nzValue]="1" nzLabel="专科"></nz-option>
+          <nz-option [nzValue]="2" nzLabel="本科"></nz-option>
+          <nz-option [nzValue]="3" nzLabel="研究生"></nz-option>
+          <nz-option [nzValue]="4" nzLabel="研究生以上"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5">电话</nz-form-label>
       <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="电话错误">
-        <input nz-input [(ngModel)]="Teacher.phone" placeholder="请输入电话" name="phone" minlength="11" maxlength="11"
+        <input nz-input [(ngModel)]="Student.phone" placeholder="请输入电话" name="phone" minlength="11" maxlength="11"
           pattern="^[0-9]*$" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5">职称</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24">
-        <nz-select [(ngModel)]="Teacher.title" nzPlaceHolder="请选择职称" name="title">
-          <nz-option nzValue="中级" nzLabel="中级"></nz-option>
-          <nz-option nzValue="副高级" nzLabel="副高级"></nz-option>
-          <nz-option nzValue="高级" nzLabel="高级"></nz-option>
-          <nz-option nzValue="正高级" nzLabel="正高级"></nz-option>
+      <nz-form-label [nzSpan]="5" nzRequired>所属班级</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生所属班级必填">
+        <nz-select [(ngModel)]="Student.class" nzPlaceHolder="请选择班级" name="class" required>
+          <nz-option nzValue="20wx" nzLabel="20wx"></nz-option>
+          <nz-option nzValue="20RJGC" nzLabel="20RJGC"></nz-option>
+          <nz-option nzValue="20JSJ" nzLabel="20JSJ"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5">职务</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24">
-        <nz-select [(ngModel)]="Teacher.post" nzPlaceHolder="请选择职务" name="post">
-          <nz-option nzValue="院（系）教务人员" nzLabel="院（系）教务人员"></nz-option>
-          <nz-option nzValue="教师" nzLabel="教师"></nz-option>
+      <nz-form-label [nzSpan]="5" nzRequired>所属专业</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生所属专业必填">
+        <nz-select [(ngModel)]="Student.major" nzPlaceHolder="请选择专业" name="major" required>
+          <nz-option nzValue="文学" nzLabel="文学"></nz-option>
+          <nz-option nzValue="软件工程" nzLabel="软件工程"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzRequired>所属院系</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="教师所属院系必填">
-        <nz-select [(ngModel)]="Teacher.department" nzPlaceHolder="请选择院系" name="department" required>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="学生所属院系必填">
+        <nz-select [(ngModel)]="Student.department" nzPlaceHolder="请选择院系" name="department" required>
           <nz-option nzValue="理学院" nzLabel="理学院"></nz-option>
           <nz-option nzValue="文学院" nzLabel="文学院"></nz-option>
+          <nz-option nzValue="计算机系" nzLabel="计算机系"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzRequired>密码</nz-form-label>
       <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="密码必填">
-        <input nz-input [(ngModel)]="Teacher.password" placeholder="请输入密码" name="password" required />
+        <input nz-input [(ngModel)]="Student.password" placeholder="请输入密码" name="password" required />
       </nz-form-control>
     </nz-form-item>
     <div class="footer">

@@ -103,7 +103,7 @@ export const USERS = {
   'POST /login/account': (req: MockRequest) => {
     const data = req.body;
     if (!(data.userName === 'admin' || data.userName === '202000010101001') || data.password !== '123456') {
-      return { msg: `Invalid username or password（admin/ng-alain.com）` };
+      return { msg: `用户和密码错误，请重新输入！` };
     }
     if (data.userName === 'admin') {
       return {

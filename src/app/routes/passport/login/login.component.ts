@@ -116,6 +116,7 @@ export class UserLoginComponent implements OnDestroy {
       .subscribe((res) => {
         if (res.msg !== 'ok') {
           this.error = res.msg;
+          this.msg.error(res.msg);
           return;
         }
         // 清空路由复用信息
