@@ -144,9 +144,14 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzRequired>身份证号</nz-form-label>
-      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="教师身份证号错误">
+      <nz-form-control nzHasFeedback [nzSpan]="24" [nzErrorTip]="combineTpl">
         <input nz-input [(ngModel)]="Teacher.pid" placeholder="请输入身份证号" name="pid" minlength="18" maxlength="18"
           pattern="^[0-9]*$" required />
+        <ng-template #combineTpl let-control>
+          <ng-container *ngIf="control.hasError('maxlength')">教师身份证号错误</ng-container>
+          <ng-container *ngIf="control.hasError('minlength')">教师身份证号错误</ng-container>
+          <ng-container *ngIf="control.hasError('required')">教师身份证号必填</ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
