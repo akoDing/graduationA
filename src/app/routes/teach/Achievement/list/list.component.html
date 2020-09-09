@@ -1,0 +1,115 @@
+<page-header [breadcrumb]="breadcrumb">
+  <ng-template #breadcrumb>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/']">首页</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>教务管理</nz-breadcrumb-item>
+      <nz-breadcrumb-item>专业管理</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </ng-template>
+</page-header>
+
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-card nzTitle="专业表单" [nzBordered]="false">
+      <!-- form list -->
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="select()">
+        <div nz-row style="width: 100%;">
+          <div nz-col [nzSpan]="5">
+            <nz-form-item>
+              <nz-form-label nzFor="majorId">专业号</nz-form-label>
+              <nz-form-control>
+                <input nz-input name="majorId" placeholder="请输入专业号" id="majorId" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="5">
+            <nz-form-item>
+              <nz-form-label nzFor="name">名称</nz-form-label>
+              <nz-form-control>
+                <input nz-input name="name" placeholder="请输入名称" id="name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzType]="'primary'">查询</button>
+              <button nz-button (click)="reset($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-row>
+          <div nz-col nzSpan="16">
+            <button nz-button [nzType]="'primary'" (click)="add($event); majorForm.reset()">
+              <i nz-icon nzType="plus"></i>
+              <span>添加</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <nz-divider></nz-divider>
+      <!-- table list -->
+      <nz-table style="margin-top: 15px;" #basicTable nzSize="middle" [nzShowTotal]="totalTemplate"
+        [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>专业号</th>
+            <th>名称</th>
+            <th>备注</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data, let i = index;">
+            <td>{{ i + 1 }}</td>
+            <td>{{ data.id }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.memo }}</td>
+            <td>
+              <a (click)="modify(data)">修改</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-popconfirm nzPopconfirmTitle="确认删除吗?" nzOkText="确定" nzCancelText="取消" (nzOnConfirm)="confirm(data)"
+                [nzIcon]="iconTpl" (nzOnCancel)="cancel()">删除</a>
+              <ng-template #iconTpl>
+                <i nz-icon nzType="question-circle-o" style="color: red;"></i>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #totalTemplate let-total>显示1-10项，总共3页</ng-template>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' }" [nzWidth]="720"
+  [nzVisible]="visible" [nzTitle]="drawerTitle" (nzOnClose)="close(); majorForm.reset()">
+  <form nz-form #majorForm="ngForm" (ngSubmit)="createUser(majorForm.value,majorForm.valid,majorForm)">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired>专业号</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="专业号必填">
+        <input nz-input [(ngModel)]="Major.id" placeholder="请输入专业号" name="id" required />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired>名称</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="名称必填">
+        <input nz-input [(ngModel)]="Major.name" placeholder="请输入名称" name="name" required />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5">备注</nz-form-label>
+      <nz-form-control nzHasFeedback [nzSpan]="24">
+        <textarea nz-input [(ngModel)]="Major.memo" name="memo" placeholder="请输入备注"
+          [nzAutosize]="{ minRows: 4, maxRows: 4 }"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <div class="footer">
+      <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>取消</span></button>
+      <button type="submit" *ngIf="!isEdit" class="ant-btn ant-btn-primary"><span>提交</span></button>
+      <button type="button" *ngIf="isEdit" (click)="edit()" class="ant-btn ant-btn-primary"><span>修改</span></button>
+    </div>
+  </form>
+</nz-drawer>

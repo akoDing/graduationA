@@ -133,27 +133,27 @@ export class StartupService {
             children: [
               {
                 text: '学年学期管理',
-                link: '/dashboard/cms',
+                link: '/educational/cms',
               },
               {
                 text: '专业管理',
-                link: '/dashboard/table',
+                link: '/educational/major',
               },
               {
                 text: '班级管理',
-                link: '/dashboard/table',
+                link: '/educational/table',
               },
               {
                 text: '教学任务管理',
-                link: '/dashboard/table',
+                link: '/educational/table',
               },
               {
                 text: '任课管理',
-                link: '/dashboard/table',
+                link: '/educational/courseTeach',
               },
               {
                 text: '课程管理',
-                link: '/dashboard/table',
+                link: '/educational/table',
               },
             ],
           },
