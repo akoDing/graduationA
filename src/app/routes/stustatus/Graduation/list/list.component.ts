@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-interface Major {
+interface Graduation {
   id: string;
-  name: string;
+  company: string;
+  stuname: string;
+  status: string;
+  date: Date;
   memo: string;
 }
 
@@ -20,29 +23,41 @@ export class ListComponent implements OnInit {
   isEdit = false;
   drawerTitle = '';
 
-  Major: Major = {
+  Graduation: Graduation = {
     id: undefined,
-    name: undefined,
+    company: undefined,
+    stuname: undefined,
+    status: undefined,
+    date: undefined,
     memo: undefined,
   };
 
   constructor(private http: HttpClient, private msg: NzMessageService) {}
 
-  listOfData: Major[] = [
+  listOfData: Graduation[] = [
     {
-      id: '0101',
-      name: '哲学',
-      memo: '哲学(英文：Philosophy，希腊语：Φιλοσοφία)是对基本和普遍之问题的研究的学科，是关于世界观的理论体系。',
+      id: '1',
+      company: 'XX信息工程有限公司',
+      stuname: '王浩',
+      status: '毕业',
+      date: new Date(),
+      memo: 'XX信息工程有限公司 优秀学生 准时毕业',
     },
     {
-      id: '0201',
-      name: '经济学',
-      memo: '经济学是研究人类社会在各个发展阶段上的各种经济活动和各种相应的经济关系及其运行、发展的规律的学科。',
+      id: '2',
+      company: 'XX贸易有限公司',
+      stuname: '张小杰',
+      status: '休学',
+      date: new Date(),
+      memo: '',
     },
     {
-      id: '0301',
-      name: '法学',
-      memo: '法学，又称法律科学，是以法律、法律现象以及其规律性为研究内容的科学，它是研究与法相关问题的专门学问。',
+      id: '3',
+      company: 'XX旅游公司',
+      stuname: '李冰',
+      status: '毕业',
+      date: new Date(),
+      memo: 'XX旅游公司 优秀学生 准时毕业',
     },
   ];
 
@@ -70,10 +85,13 @@ export class ListComponent implements OnInit {
   add(e: MouseEvent): void {
     e.preventDefault();
     this.isEdit = false;
-    this.drawerTitle = '添加专业';
-    this.Major = {
+    this.drawerTitle = '添加毕业信息';
+    this.Graduation = {
       id: undefined,
-      name: undefined,
+      company: undefined,
+      stuname: undefined,
+      status: undefined,
+      date: undefined,
       memo: undefined,
     };
 
@@ -86,8 +104,8 @@ export class ListComponent implements OnInit {
 
   modify(data) {
     this.isEdit = true;
-    this.drawerTitle = '修改专业';
-    this.Major = { ...data };
+    this.drawerTitle = '修改毕业信息';
+    this.Graduation = { ...data };
     this.visible = true;
   }
 

@@ -29,6 +29,10 @@ const routes: Routes = [
       { path: 'database', loadChildren: () => import('./database/database.module').then((m) => m.DatabaseModule) },
       // 教务管理子模块
       { path: 'educational', loadChildren: () => import('./educational/educational.module').then((m) => m.EducationalModule) },
+      // 教学管理子模块
+      { path: 'teach', loadChildren: () => import('./teach/teach.module').then((m) => m.TeachModule) },
+      // 学籍管理子模块
+      { path: 'stustatus', loadChildren: () => import('./stustatus/stustatus.module').then((m) => m.StustatusModule) },
     ],
   },
   // 全屏布局

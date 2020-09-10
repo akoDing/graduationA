@@ -163,7 +163,7 @@ export class StartupService {
             children: [
               {
                 text: '选课管理',
-                link: '/dashboard/cms',
+                link: '/teach/courseSelection',
               },
               {
                 text: '成绩管理',
@@ -185,7 +185,7 @@ export class StartupService {
               },
               {
                 text: '毕业生管理',
-                link: '/dashboard/table',
+                link: '/stustatus/graduation',
               },
             ],
           },

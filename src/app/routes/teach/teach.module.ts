@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
-import { MajorModule } from './Major/Major.module';
+import { CourseSelectionModule } from './CourseSelection/CourseSelection.module';
 
-const MODULE = [MajorModule];
+const MODULE = [CourseSelectionModule];
 const COMPONENTS = [];
 const COMPONENTS_NOROUNT = [];
 
@@ -12,4 +12,4 @@ const COMPONENTS_NOROUNT = [];
   entryComponents: COMPONENTS_NOROUNT,
   // exports: [...MODULE],
 })
-export class EducationalModule {}
+export class TeachModule {}

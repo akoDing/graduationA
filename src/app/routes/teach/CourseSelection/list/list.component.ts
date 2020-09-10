@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-interface Major {
-  id: string;
+interface CourseSelect {
+  lesson: string;
   name: string;
+  date: Date;
   memo: string;
 }
 
@@ -20,29 +21,33 @@ export class ListComponent implements OnInit {
   isEdit = false;
   drawerTitle = '';
 
-  Major: Major = {
-    id: undefined,
+  CourseSelect: CourseSelect = {
+    lesson: undefined,
     name: undefined,
+    date: undefined,
     memo: undefined,
   };
 
   constructor(private http: HttpClient, private msg: NzMessageService) {}
 
-  listOfData: Major[] = [
+  listOfData: CourseSelect[] = [
     {
-      id: '0101',
-      name: '哲学',
-      memo: '哲学(英文：Philosophy，希腊语：Φιλοσοφία)是对基本和普遍之问题的研究的学科，是关于世界观的理论体系。',
+      lesson: '高数A',
+      name: '徐浩',
+      date: new Date(),
+      memo: '高数A高数A高数A高数A',
     },
     {
-      id: '0201',
-      name: '经济学',
-      memo: '经济学是研究人类社会在各个发展阶段上的各种经济活动和各种相应的经济关系及其运行、发展的规律的学科。',
+      lesson: 'JAVA',
+      name: '张清',
+      date: new Date(),
+      memo: '高数A高数A高数A高数A',
     },
     {
-      id: '0301',
-      name: '法学',
-      memo: '法学，又称法律科学，是以法律、法律现象以及其规律性为研究内容的科学，它是研究与法相关问题的专门学问。',
+      lesson: '视觉艺术',
+      name: '	张楠',
+      date: new Date(),
+      memo: '高数A高数A高数A高数A',
     },
   ];
 
@@ -64,16 +69,17 @@ export class ListComponent implements OnInit {
     this.msg.info('click confirm');
     console.log(item);
     // 删除数据
-    this.listOfData = this.listOfData.filter((d) => d.id !== item.id);
+    this.listOfData = this.listOfData.filter((d) => d.lesson !== item.lesson);
   }
 
   add(e: MouseEvent): void {
     e.preventDefault();
     this.isEdit = false;
-    this.drawerTitle = '添加专业';
-    this.Major = {
-      id: undefined,
+    this.drawerTitle = '添加选课';
+    this.CourseSelect = {
+      lesson: undefined,
       name: undefined,
+      date: undefined,
       memo: undefined,
     };
 
@@ -86,8 +92,8 @@ export class ListComponent implements OnInit {
 
   modify(data) {
     this.isEdit = true;
-    this.drawerTitle = '修改专业';
-    this.Major = { ...data };
+    this.drawerTitle = '修改选课';
+    this.CourseSelect = { ...data };
     this.visible = true;
   }
 
