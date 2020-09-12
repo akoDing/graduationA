@@ -199,7 +199,7 @@ export class StartupService {
               },
               {
                 text: '毕业率就业率报表',
-                link: '/dashboard/table',
+                link: '/statistical/graduateEmployment',
               },
             ],
           },

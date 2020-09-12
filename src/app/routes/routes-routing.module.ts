@@ -33,6 +33,8 @@ const routes: Routes = [
       { path: 'teach', loadChildren: () => import('./teach/teach.module').then((m) => m.TeachModule) },
       // 学籍管理子模块
       { path: 'stustatus', loadChildren: () => import('./stustatus/stustatus.module').then((m) => m.StustatusModule) },
+      // 统计管理子模块
+      { path: 'statistical', loadChildren: () => import('./statistical/statistical.module').then((m) => m.StatisticalModule) },
     ],
   },
   // 全屏布局

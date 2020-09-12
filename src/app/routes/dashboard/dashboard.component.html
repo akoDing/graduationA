@@ -1,5 +1,4 @@
-<!-- <page-header></page-header> -->
-<page-header [breadcrumb]="breadcrumb">
+<page-header [breadcrumb]="breadcrumb" [content]="content" [extra]="extra">
   <ng-template #breadcrumb>
     <nz-breadcrumb>
       <nz-breadcrumb-item>
@@ -8,4 +7,86 @@
       <nz-breadcrumb-item>首页</nz-breadcrumb-item>
     </nz-breadcrumb>
   </ng-template>
+  <ng-template #content>
+    <div class="content">
+      <div class="avatar">
+        <nz-avatar nzSrc="../../../assets/tmp/img/avatar.jpg"></nz-avatar>
+      </div>
+      <div class="desc">
+        <div class="desc-title">晚上好,{{ user.name }},祝您开心每一天。</div>
+        <div>
+          <ul style="list-style:none;padding-left: 0;">
+            <li>
+              <div style="cursor:pointer">自强不息；先天下之忧而忧，后天下之乐而乐</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #extra>
+    <div class="page-extra">
+      <div>
+        <p>待 办</p>
+        <p style="cursor:pointer">25</p>
+      </div>
+      <div>
+        <p>邮 件</p>
+        <p style="cursor:pointer">10</p>
+      </div>
+      <div>
+        <p>收 藏</p>
+        <p style="cursor:pointer">
+          26
+          <span> / 90</span>
+        </p>
+      </div>
+    </div>
+  </ng-template>
 </page-header>
+<div nz-row nzGutter="16">
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="bg-primary rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-white">
+        <div class="h2 mt0">16,467</div>
+        <p class="text-nowrap mb0">在校学生数</p>
+      </div>
+      <div nz-col nzSpan="12" style="text-align: center;">
+        <i nz-icon nzType="team" nzTheme="outline" style="font-size: 65px; color: #08c;"></i>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="bg-success rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-white">
+        <div class="h2 mt0">1,347</div>
+        <p class="text-nowrap mb0">在校教师数</p>
+      </div>
+      <div nz-col nzSpan="12" style="text-align: center;">
+        <i nz-icon nzType="usergroup-add" nzTheme="outline" style="font-size: 65px; color: #3b9e0b;"></i>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="bg-orange rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-white">
+        <div class="h2 mt0">17</div>
+        <p class="text-nowrap mb0">校内专业数</p>
+      </div>
+      <div nz-col nzSpan="12" style="text-align: center;">
+        <i nz-icon nzType="experiment" nzTheme="outline" style="font-size: 65px; color: #ca7010;"></i>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="bg-magenta rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-white">
+        <div class="h2 mt0">1,456</div>
+        <p class="text-nowrap mb0">校内课程数</p>
+      </div>
+      <div nz-col nzSpan="12" style="text-align: center;">
+        <i nz-icon nzType="table" nzTheme="outline" style="font-size: 65px; color: #c50e72;"></i>
+      </div>
+    </div>
+  </div>
+</div>
