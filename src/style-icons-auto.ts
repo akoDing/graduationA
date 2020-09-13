@@ -39,11 +39,14 @@ import {
   PrinterOutline,
   RocketOutline,
   ScanOutline,
+  ScheduleTwoTone,
   SettingOutline,
   ShareAltOutline,
   ShoppingCartOutline,
+  SolutionOutline,
   SoundOutline,
   StarOutline,
+  TableOutline,
   TaobaoCircleOutline,
   TaobaoOutline,
   TeamOutline,
@@ -53,9 +56,7 @@ import {
   UsergroupAddOutline,
   UserOutline,
   WeiboCircleOutline,
-  TableOutline,
 } from '@ant-design/icons-angular/icons';
-
 export const ICONS_AUTO = [
   AlipayCircleOutline,
   ApiOutline,
@@ -107,4 +108,6 @@ export const ICONS_AUTO = [
   UsergroupAddOutline,
   ExperimentOutline,
   TableOutline,
+  SolutionOutline,
+  ScheduleTwoTone,
 ];

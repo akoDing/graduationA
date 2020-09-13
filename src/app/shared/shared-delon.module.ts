@@ -9,8 +9,6 @@ import { SidebarNavModule } from '@delon/abc/sidebar-nav';
 import { STModule } from '@delon/abc/st';
 import { SVModule } from '@delon/abc/sv';
 
-import { G2MiniBarModule } from '@delon/chart/mini-bar';
-
 export const SHARED_DELON_MODULES = [
   PageHeaderModule,
   ResultModule,
@@ -22,5 +20,4 @@ export const SHARED_DELON_MODULES = [
   SEModule,
   SVModule,
   // ReuseTabModule,
-  G2MiniBarModule,
 ];

@@ -1,3 +1,4 @@
+import { NzDescriptionsComponent, NzDescriptionsModule, NzResultModule } from 'ng-zorro-antd';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -62,4 +63,6 @@ export const SHARED_ZORRO_MODULES = [
   NzBreadCrumbModule,
   NzTagModule,
   NzDatePickerModule,
+  NzDescriptionsModule,
+  NzResultModule,
 ];

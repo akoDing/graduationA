@@ -35,6 +35,8 @@ const routes: Routes = [
       { path: 'stustatus', loadChildren: () => import('./stustatus/stustatus.module').then((m) => m.StustatusModule) },
       // 统计管理子模块
       { path: 'statistical', loadChildren: () => import('./statistical/statistical.module').then((m) => m.StatisticalModule) },
+      // 信息查询子模块
+      { path: 'stuquery', loadChildren: () => import('./stuquery/stuquery.module').then((m) => m.StuQueryModule) },
     ],
   },
   // 全屏布局

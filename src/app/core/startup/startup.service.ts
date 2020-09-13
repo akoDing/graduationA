@@ -96,12 +96,18 @@ export class StartupService {
       email: 'cipchk@qq.com',
       token: '123456789',
     };
+    console.log(this.settingService.user);
     // Application information: including site name, description, year
     this.settingService.setApp(app);
     // User information: including name, avatar, email address
     // this.settingService.setUser(user);
     // ACL: Set the permissions to full, https://ng-alain.com/acl/getting-started
-    this.aclService.setFull(true);
+    // this.aclService.setFull(true);
+    if (this.settingService.user.name === '管理员') {
+      this.aclService.setRole(['admin']);
+    } else {
+      this.aclService.setRole(['student']);
+    }
     // Menu data, https://ng-alain.com/theme/menu
     this.menuService.add([
       {
@@ -114,8 +120,27 @@ export class StartupService {
             icon: { type: 'icon', value: 'book' },
           },
           {
+            text: '个人信息',
+            link: '/stuquery/stuInfo',
+            icon: { type: 'icon', value: 'user' },
+            acl: 'student',
+          },
+          {
+            text: '个人成绩',
+            link: '/stuquery/achieveInfo',
+            icon: { type: 'icon', value: 'solution' },
+            acl: 'student',
+          },
+          {
+            text: '学生选课',
+            // link: '/dashboard',
+            icon: { type: 'icon', value: 'star' },
+            acl: 'student',
+          },
+          {
             text: '系统管理',
             icon: { type: 'icon', value: 'global' },
+            acl: 'admin',
             children: [
               {
                 text: '教师管理',
@@ -130,6 +155,7 @@ export class StartupService {
           {
             text: '教务管理',
             icon: { type: 'icon', value: 'scan' },
+            acl: 'admin',
             children: [
               {
                 text: '学年学期管理',
@@ -160,6 +186,7 @@ export class StartupService {
           {
             text: '教学管理',
             icon: { type: 'icon', value: 'team' },
+            acl: 'admin',
             children: [
               {
                 text: '选课管理',
@@ -174,6 +201,7 @@ export class StartupService {
           {
             text: '学籍管理',
             icon: { type: 'icon', value: 'message' },
+            acl: 'admin',
             children: [
               {
                 text: '奖惩管理',
@@ -192,6 +220,7 @@ export class StartupService {
           {
             text: '信息、统计管理',
             icon: { type: 'icon', value: 'appstore' },
+            acl: 'admin',
             children: [
               {
                 text: '学籍统计报表',

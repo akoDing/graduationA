@@ -1,0 +1,30 @@
+<page-header [breadcrumb]="breadcrumb">
+  <ng-template #breadcrumb>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/']">主菜单</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>个人信息</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </ng-template>
+</page-header>
+
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-card nzTitle="学生A信息" [nzBordered]="false">
+      <!-- descriptions -->
+      <nz-descriptions nzLayout="vertical">
+        <nz-descriptions-item nzTitle="姓名">张洁</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="性别">女</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="出生日期">1994年08月23日</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="身份证">310115199408230831</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="所属院系">文学院</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="所属班级">WX01</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="所属专业">文学</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="电话">15000737456</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="邮箱">234512@qq.com</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="住址">上海市闵行区平阳路118弄23号102室</nz-descriptions-item>
+      </nz-descriptions>
+    </nz-card>
+  </div>
+</div>
