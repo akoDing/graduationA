@@ -63,13 +63,6 @@ English | [简体中文](README-zh_CN.md)
 
 ng-alain is an MIT-licensed open source project. In order to achieve better and sustainable development of the project, we expect to gain more backers. You can support us in any of the following ways:
 
-- [patreon](https://www.patreon.com/cipchk)
-- [opencollective](https://opencollective.com/ng-alain)
-- [paypal](https://www.paypal.me/cipchk)
-- [支付宝或微信](https://ng-alain.com/assets/donate.png)
-
-Or purchasing our [business theme](https://e.ng-alain.com/).
-
 ## Backers
 
 Thank you to all our backers! 🙏
