@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">NG-ALAIN</h1>
+<h1 align="center">NG-ALAIN-ako</h1>
 
 <div align="center">
   Out-of-box UI solution for enterprise applications, Let developers focus on business.
