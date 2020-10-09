@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-interface Major {
+interface Achievement {
   id: string;
-  name: string;
-  memo: string;
+  stuName: string;
+  className: string;
+  score: number;
+  temp: string;
 }
 
 @Component({
@@ -20,29 +22,58 @@ export class ListComponent implements OnInit {
   isEdit = false;
   drawerTitle = '';
 
-  Major: Major = {
+  Achievement: Achievement = {
     id: undefined,
-    name: undefined,
-    memo: undefined,
+    stuName: undefined,
+    className: undefined,
+    score: undefined,
+    temp: undefined,
   };
 
   constructor(private http: HttpClient, private msg: NzMessageService) {}
 
-  listOfData: Major[] = [
+  listOfData: Achievement[] = [
     {
       id: '0101',
-      name: '哲学',
-      memo: '哲学(英文：Philosophy，希腊语：Φιλοσοφία)是对基本和普遍之问题的研究的学科，是关于世界观的理论体系。',
+      stuName: '王浩',
+      className: '多媒体技术',
+      score: 59,
+      temp: '不及格',
     },
     {
-      id: '0201',
-      name: '经济学',
-      memo: '经济学是研究人类社会在各个发展阶段上的各种经济活动和各种相应的经济关系及其运行、发展的规律的学科。',
+      id: '0101',
+      stuName: '刘美',
+      className: '摄影',
+      score: 60,
+      temp: '及格',
     },
     {
-      id: '0301',
-      name: '法学',
-      memo: '法学，又称法律科学，是以法律、法律现象以及其规律性为研究内容的科学，它是研究与法相关问题的专门学问。',
+      id: '0101',
+      stuName: '王思',
+      className: '体育（B）',
+      score: 79,
+      temp: '及格',
+    },
+    {
+      id: '0101',
+      stuName: '罗嘉良',
+      className: '高数（A）',
+      score: 80,
+      temp: '良好',
+    },
+    {
+      id: '0101',
+      stuName: '丁宁',
+      className: '书法',
+      score: 89,
+      temp: '良好',
+    },
+    {
+      id: '0101',
+      stuName: '善雄',
+      className: 'JAVA',
+      score: 90,
+      temp: '优秀',
     },
   ];
 
@@ -71,10 +102,12 @@ export class ListComponent implements OnInit {
     e.preventDefault();
     this.isEdit = false;
     this.drawerTitle = '添加专业';
-    this.Major = {
+    this.Achievement = {
       id: undefined,
-      name: undefined,
-      memo: undefined,
+      stuName: undefined,
+      className: undefined,
+      score: undefined,
+      temp: undefined,
     };
 
     this.visible = true;
@@ -87,7 +120,7 @@ export class ListComponent implements OnInit {
   modify(data) {
     this.isEdit = true;
     this.drawerTitle = '修改专业';
-    this.Major = { ...data };
+    this.Achievement = { ...data };
     this.visible = true;
   }
 

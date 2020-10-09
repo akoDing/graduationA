@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
+import { AchievementModule } from './Achievement/Achievement.module';
 import { CourseSelectionModule } from './CourseSelection/CourseSelection.module';
 
-const MODULE = [CourseSelectionModule];
+const MODULE = [CourseSelectionModule, AchievementModule];
 const COMPONENTS = [];
 const COMPONENTS_NOROUNT = [];
 

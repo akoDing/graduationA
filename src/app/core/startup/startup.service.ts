@@ -194,7 +194,7 @@ export class StartupService {
               },
               {
                 text: '成绩管理',
-                link: '/dashboard/table',
+                link: '/teach/achievement',
               },
             ],
           },
