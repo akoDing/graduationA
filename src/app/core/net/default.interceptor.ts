@@ -1,4 +1,12 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponseBase } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+  HttpResponseBase,
+} from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
@@ -155,6 +163,20 @@ export class DefaultInterceptor implements HttpInterceptor {
         //     return of(ev);
         //   }
         // }
+        if (ev instanceof HttpResponse) {
+          const body = ev.body;
+          if (!body) {
+            // this.injector.get(NzMessageService).error(body.msg);
+            // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
+            // this.http.get('/').subscribe() 并不会触发
+            return throwError({});
+          } else {
+            // 重新修改 `body` 内容为 `response` 内容，对于绝大多数场景已经无须再关心业务状态码
+            return of(new HttpResponse(Object.assign(ev, { body: body.data })));
+            // 或者依然保持完整的格式
+            // return of(ev);
+          }
+        }
         break;
       case 401:
         return this.tryRefreshToken(ev, req, next);
@@ -177,11 +199,13 @@ export class DefaultInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // 统一加上服务端前缀
+    // 统一加上服务端前缀 // 请求本地json数据不统一加上服务端前缀
     let url = req.url;
-    if (!url.startsWith('https://') && !url.startsWith('http://')) {
+    if (!url.startsWith('https://') && !url.startsWith('http://') && !url.endsWith('json')) {
       url = environment.SERVER_URL + url;
     }
+
+    console.log(url);
 
     const newReq = req.clone({ url });
     return next.handle(newReq).pipe(

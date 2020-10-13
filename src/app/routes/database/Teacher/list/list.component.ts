@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { _HttpClient } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { TeacherService } from 'src/app/shared/services/apis/Teacher.service';
 
 interface Teacher {
   id: string;
@@ -42,7 +44,7 @@ export class ListComponent implements OnInit {
     title: undefined,
   };
 
-  constructor(private http: HttpClient, private msg: NzMessageService) {}
+  constructor(private http: _HttpClient, private msg: NzMessageService, private teacherService: TeacherService) {}
 
   listOfData: Teacher[] = [
     {
@@ -86,13 +88,16 @@ export class ListComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._getListTeacher();
+  }
 
   reset(e: MouseEvent) {
     e.preventDefault();
   }
 
   select() {
+    this._getListTeacher();
     this.msg.info('搜索表单');
   }
 
@@ -157,4 +162,10 @@ export class ListComponent implements OnInit {
   }
 
   edit() {}
+
+  _getListTeacher() {
+    this.teacherService.ListTeacher().subscribe((res) => {
+      this.listOfData = res;
+    });
+  }
 }
