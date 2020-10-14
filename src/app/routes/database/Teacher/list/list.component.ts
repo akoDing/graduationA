@@ -24,7 +24,7 @@ interface Teacher {
   templateUrl: './list.component.html',
 })
 export class ListComponent implements OnInit {
-  loading: boolean;
+  loading = true;
   expandForm = true;
   visible = false;
   isEdit = false;
@@ -164,8 +164,10 @@ export class ListComponent implements OnInit {
   edit() {}
 
   _getListTeacher() {
+    this.loading = true;
     this.teacherService.ListTeacher().subscribe((res) => {
       this.listOfData = res;
+      this.loading = false;
     });
   }
 }
